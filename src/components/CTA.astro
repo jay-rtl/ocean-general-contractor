@@ -1,0 +1,10 @@
+---
+import Arrow from './Arrow.astro';
+import Photo from './Photo.astro';
+import {url} from '../data/content';
+---
+<section class="closing-cta">
+  <Photo name="living" alt="Sunlit residential interior, design inspiration" sizes="100vw" />
+  <div class="closing-content"><p class="eyebrow">YOUR HOME. YOUR NEXT CHAPTER.</p><h2>Let's build something<br/><em>exceptional.</em></h2><div class="cta-actions"><a class="button light" href={url('/contact/')}>Start your project <Arrow /></a><a class="phone-link" href="tel:+14086798566">(408) 679-8566 <Arrow diagonal /></a></div></div>
+  <span class="image-note">Architectural inspiration</span>
+</section>

@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Reviews from '../components/Reviews.astro';
+import CTA from '../components/CTA.astro';
+import {reviews} from '../data/content';
+---
+<Layout title="Client Experiences & Reviews" description="Read short customer review excerpts published by Ocean General Contractors about kitchen remodeling, family room improvements, and exterior work."><section class="page-intro section"><p class="eyebrow">CLIENT EXPERIENCES</p><h1>The work matters.<br/><em>So does the experience.</em></h1><div class="page-intro-bottom"><span class="eyebrow">IN OUR CLIENTS’ OWN WORDS</span><p>Short excerpts from customer feedback published on the company website. Attribution is preserved; no star ratings or review totals have been added.</p></div></section><Reviews/><section class="section review-index"><p class="eyebrow">THE PEOPLE BEHIND THE WORDS</p>{reviews.map((review,i)=><article><span>0{i+1}</span><div><h2>{review.name}</h2><p>{review.topic}</p></div><p>Review excerpt featured above</p></article>)}<p class="fine-print">Source: the company’s published reviews page, checked October 12, 2026. These excerpts have not been independently authenticated. Source details are retained in the project’s research documentation.</p></section><CTA/></Layout>

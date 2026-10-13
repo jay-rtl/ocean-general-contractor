@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import CTA from '../../components/CTA.astro';
+import {services,url} from '../../data/content';
+---
+<Layout title="Remodeling, Painting & Flooring Services" description="Explore kitchen remodeling, bathroom renovations, interior and exterior painting, flooring, and general home remodeling in San Jose."><section class="page-intro section"><p class="eyebrow">OUR EXPERTISE</p><h1>A home with<br/><em>more possibility.</em></h1><div class="page-intro-bottom"><span class="eyebrow">FROM ONE ROOM TO THE WHOLE HOME</span><p>Thoughtful changes at every scale. Explore the ways we can help you reimagine the spaces you use every day.</p></div></section><section class="service-directory section">{services.map(s=><article class="service-row"><a class="service-row-image" href={url(`/services/${s.slug}/`)}><Photo name={s.image} alt={`${s.short} — design inspiration`}/><span class="image-badge">Design inspiration</span></a><div><p class="eyebrow">{s.number} / OUR EXPERTISE</p><h2><a href={url(`/services/${s.slug}/`)}>{s.name}</a></h2><p>{s.description}</p><ul>{s.details.slice(0,3).map(d=><li>{d}</li>)}</ul><a class="text-link" href={url(`/services/${s.slug}/`)}>Explore {s.short.toLowerCase()} <Arrow diagonal/></a></div></article>)}</section><CTA/></Layout>

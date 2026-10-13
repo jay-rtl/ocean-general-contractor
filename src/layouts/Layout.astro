@@ -1,0 +1,26 @@
+---
+import {ClientRouter} from 'astro:transitions';
+import Brand from '../components/Brand.astro';
+import Arrow from '../components/Arrow.astro';
+import {url,services,business} from '../data/content';
+import '@fontsource/manrope/400.css';
+import '@fontsource/manrope/500.css';
+import '@fontsource/manrope/600.css';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '../styles/global.css';
+interface Props {title:string; description:string; home?:boolean; image?:string;}
+const {title,description,home=false,image=url('/social.jpg')}=Astro.props;
+const canonical=new URL(Astro.url.pathname,Astro.site);
+const production=Astro.site?.hostname!=='ocean-remodeling.example';
+const path=Astro.url.pathname;
+const nav=[['About','/about/'],['Services','/services/'],['Our work','/projects/'],['Our process','/#process']];
+const schema={ '@context':'https://schema.org','@type':'GeneralContractor',name:business.name,telephone:'+1-408-679-8566',email:business.email,address:{'@type':'PostalAddress',addressLocality:'San Jose',addressRegion:'CA',postalCode:'95116',addressCountry:'US'},areaServed:['San Jose','Campbell','Los Gatos','Santa Clara County','Fremont'],...(production?{url:Astro.site?.toString()}: {})};
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#171b1d"/><link rel="icon" type="image/svg+xml" href={url('/favicon.svg')}/><title>{title} | Ocean General Contractors</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/><meta name="robots" content={production?'index,follow':'noindex,follow'}/><meta property="og:type" content="website"/><meta property="og:title" content={`${title} | Ocean General Contractors`}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:image" content={new URL(image,Astro.site)}/><meta property="og:site_name" content={business.name}/><meta name="twitter:card" content="summary_large_image"/><script type="application/ld+json" set:html={JSON.stringify(schema)}/><ClientRouter /></head>
+<body class:list={[{'is-home':home}]}><a class="skip-link" href="#main">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div>
+<header class="site-header"><Brand /><nav class="desktop-nav" aria-label="Main navigation">{nav.map(([label,href])=><a href={url(href)} aria-current={path===url(href)?'page':undefined}>{label}</a>)}</nav><a href={url('/contact/')} class="header-cta">Start your project <Arrow diagonal /></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button></header>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" inert><div>{[...nav,['Reviews','/reviews/'],['Service areas','/service-areas/'],['Contact','/contact/']].map(([label,href],i)=><a href={url(href)}><small>0{i+1}</small>{label}<Arrow diagonal /></a>)}</div><a class="mobile-phone" href="tel:+14086798566">(408) 679-8566</a><p>Thoughtfully built in San Jose, California.</p></nav>
+<main id="main"><slot /></main>
+<footer class="footer"><div class="footer-top"><div><Brand /><p>Thoughtful remodeling.<br/>Spaces that feel like you.</p><span class="eyebrow">SAN JOSE, CALIFORNIA</span></div><div><h2>Explore</h2><a href={url('/about/')}>Our story</a><a href={url('/projects/')}>Our work</a><a href={url('/reviews/')}>Client experiences</a><a href={url('/service-areas/')}>Service areas</a></div><div><h2>Expertise</h2>{services.map(s=><a href={url(`/services/${s.slug}/`)}>{s.name}</a>)}</div><div class="footer-contact"><h2>Let's talk</h2><a href="tel:+14086798566">(408) 679-8566</a><a href="mailto:bluecollarcorgis@gmail.com">bluecollarcorgis@gmail.com</a><a class="text-link" href={url('/contact/')}>Start your project <Arrow diagonal /></a></div></div><div class="footer-bottom"><span>© {new Date().getFullYear()} Ocean General Contractors</span><span>Built with purpose. Crafted to last.</span><a href={url('/privacy/')}>Privacy & image credits</a></div></footer>
+<script>import '../scripts/site';</script></body></html>

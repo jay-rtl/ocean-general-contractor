@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import Architecture from '../components/Architecture.astro';
+import Process from '../components/Process.astro';
+import CTA from '../components/CTA.astro';
+---
+<Layout title="Our Approach to Remodeling" description="Meet Ocean General Contractors, a locally owned San Jose remodeling company with an approach rooted in careful craftsmanship and clear communication.">
+<section class="page-intro section"><p class="eyebrow">ABOUT OCEAN</p><h1>Your home.<br/>Our <em>shared purpose.</em></h1><div class="page-intro-bottom"><span class="eyebrow">ROOTED IN SAN JOSE</span><p>We believe a home should reflect the people who live in it. That belief shapes the way we listen, plan, and build.</p></div></section>
+<figure class="wide-photo"><Photo name="living" alt="A considered residential living space, architectural inspiration" eager sizes="100vw"/><figcaption>Architectural inspiration — the possibilities of a thoughtfully considered home.</figcaption></figure>
+<section class="section editorial-split"><p class="eyebrow">A PERSONAL APPROACH</p><div><h2>Built on trust.<br/><em>Grounded in care.</em></h2><p class="large-copy">Ocean General Contractors is a locally owned remodeling company based in San Jose, California.</p><p>Our work spans kitchens, bathrooms, painting, flooring, and general home remodeling. We bring these services together around the needs of each home and the people who live there.</p><p>A thoughtful renovation starts with an honest conversation: what matters to you, what could work better, and what you hope to create. Clear communication keeps that conversation going as the work takes shape.</p></div></section>
+<section class="section values-section"><div class="section-heading"><p class="eyebrow">WHAT GUIDES THE WORK</p><h2>The small things<br/><em>are the big things.</em></h2></div><div class="values-list">{[['01','Listen first','Your ideas, routines, and priorities give a project its direction.'],['02','Consider the details','Materials, finishes, and transitions deserve care at every scale.'],['03','Communicate clearly','A shared understanding of the scope and next steps makes the process better.']].map(([n,title,copy])=><div><span>{n}</span><h3>{title}</h3><p>{copy}</p></div>)}</div></section>
+<section class="section philosophy"><div class="philosophy-copy"><p class="eyebrow">FORM MEETS FUNCTION</p><h2>Beauty with<br/><em>something behind it.</em></h2><p>Our interactive architectural study is a reminder that a considered result starts with a thoughtful structure. Every element has a place. Every detail has a purpose.</p></div><Architecture /></section><Process/><CTA/>
+</Layout>

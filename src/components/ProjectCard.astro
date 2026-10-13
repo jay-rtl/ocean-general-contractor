@@ -1,0 +1,11 @@
+---
+import Photo from './Photo.astro';
+import Arrow from './Arrow.astro';
+import {url, projects} from '../data/content';
+interface Props { project: typeof projects[number]; index?:number; }
+const {project,index=0}=Astro.props;
+---
+<article class="project-card" data-category={project.category}>
+  <a href={url(`/projects/${project.slug}/`)} class="project-image"><Photo name={project.image} alt={`${project.title} — ${project.type.toLowerCase()}`} /><span class="image-badge">{project.type}</span><span class="round-arrow"><Arrow diagonal /></span></a>
+  <div class="project-caption"><span class="project-number">0{index+1}</span><div><p class="eyebrow">{project.category} <span>/</span> {project.location}</p><h3><a href={url(`/projects/${project.slug}/`)}>{project.title}</a></h3></div><Arrow diagonal /></div>
+</article>

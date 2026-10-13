@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets';
+interface Props { name: string; alt: string; class?: string; eager?: boolean; sizes?: string; }
+const {name, alt, class:className='', eager=false, sizes='(max-width: 700px) 100vw, 60vw'} = Astro.props;
+const images = import.meta.glob<{default:ImageMetadata}>('../assets/*.jpg', {eager:true});
+const src = images[`../assets/${name}.jpg`]?.default;
+if (!src) throw new Error(`Missing image: ${name}`);
+---
+<Image src={src} alt={alt} class={className} width={Math.min(src.width,1200)} widths={[480,800,1200,1800]} sizes={sizes} format="webp" quality={80} loading={eager?'eager':'lazy'} fetchpriority={eager?'high':'auto'} decoding="async" />

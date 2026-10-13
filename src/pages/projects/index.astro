@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CTA from '../../components/CTA.astro';
+import {projects} from '../../data/content';
+---
+<Layout title="Project Gallery & Design Inspiration" description="Explore documented Ocean General Contractors kitchen, bathroom, and renovation projects, alongside clearly labeled painting and flooring inspiration."><section class="page-intro section"><p class="eyebrow">THE PROJECT GALLERY</p><h1>Spaces with<br/><em>a new story.</em></h1><div class="page-intro-bottom"><span class="eyebrow">A CLOSER LOOK AT THE DETAILS</span><p>Company project photography and a few possibilities to spark your next idea. Concept studies are labeled as design inspiration.</p></div></section><section class="section gallery-section"><div class="gallery-filters" role="group" aria-label="Filter projects">{['All','Kitchens','Bathrooms','Painting','Flooring','Renovations'].map((category,i)=><button type="button" data-filter={category} class:list={[{active:i===0}]} aria-pressed={i===0}>{category}<span>{i===0?'06':''}</span></button>)}</div><p class="sr-only" data-filter-status aria-live="polite">6 projects shown</p><div class="gallery-grid">{projects.map((project,index)=><ProjectCard project={project} index={index}/>)}</div><p class="fine-print">Company project descriptions are based on published project updates. Budgets, exact addresses, and completion durations are not supplied.</p></section><CTA/></Layout>

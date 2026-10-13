@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import CTA from '../../components/CTA.astro';
+import {projects,url} from '../../data/content';
+export function getStaticPaths(){return projects.map((project,i)=>({params:{slug:project.slug},props:{project,next:projects[(i+1)%projects.length]}}));}
+const {project,next}=Astro.props;
+---
+<Layout title={project.title} description={`${project.summary} ${project.type==='Concept study'?'Design inspiration; not a completed company project.':'A documented Ocean General Contractors project.'}`}><section class="project-detail-intro section"><a class="eyebrow breadcrumb" href={url('/projects/')}>← PROJECT GALLERY</a><h1>{project.title}</h1><div class="project-meta"><span>{project.category}</span><span>{project.location}</span><span>{project.date}</span><span>{project.type}</span></div></section><figure class="project-detail-image"><Photo name={project.image} alt={`${project.title}, ${project.type.toLowerCase()}`} eager sizes="100vw"/><figcaption>{project.type==='Company project'?'Company project photography, published by Ocean General Contractors.':'Concept study — licensed inspiration photography, not company work.'}</figcaption></figure><section class="section project-story"><div><p class="eyebrow">{project.type==='Company project'?'THE PROJECT':'THE INSPIRATION'}</p><h2>{project.type==='Company project'?'A closer look.':'A starting point.'}</h2></div><div><p class="large-copy">{project.summary}</p><p>{project.details}</p><h3>{project.type==='Company project'?'Published scope':'Design notes'}</h3><ul class="scope-tags">{project.scope.map(s=><li>{s}</li>)}</ul><a class="text-link" href={url('/contact/')}>Talk about your home <Arrow diagonal/></a></div></section><a class="next-project section" href={url(`/projects/${next.slug}/`)}><span class="eyebrow">NEXT IN THE GALLERY</span><span>{next.title}</span><Arrow diagonal/></a><CTA/></Layout>

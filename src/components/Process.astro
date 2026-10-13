@@ -1,0 +1,4 @@
+---
+const steps=[['Consultation','We start with a conversation. Your home, your ideas, and what you want to change.'],['Planning','Align the scope, materials, and priorities before the work begins.'],['Construction','Bring the plan to life with careful work and clear communication.'],['Final walkthrough','Walk through the details together and review the finished space.']];
+---
+<section class="section process" id="process"><div class="section-heading"><div><p class="eyebrow">THE WAY FORWARD</p><h2>A clear path.<br/><em>A considered result.</em></h2></div><p>From the first conversation to the final detail, a better experience starts with a shared understanding.</p></div><ol class="process-grid">{steps.map(([title,text],i)=><li><span class="step-number">0{i+1}</span><div class="step-line"></div><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
