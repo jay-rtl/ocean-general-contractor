@@ -31,14 +31,14 @@ function initialize() {
     if(menu)menu.inert=true;
     document.body.classList.remove('menu-open');
     lenis?.start();
-    if(returnFocus)menuButton?.focus();
+    if(returnFocus)menuButton?.focus({preventScroll:true});
   };
   menuButton?.addEventListener('click',()=>{
     if(menuButton.getAttribute('aria-expanded')==='true'){closeMenu(true);return;}
     menuButton.setAttribute('aria-expanded','true');menuButton.setAttribute('aria-label','Close navigation');
     if(menu){menu.inert=false;menu.classList.add('open');}
     document.body.classList.add('menu-open');lenis?.stop();
-    menu?.querySelector<HTMLAnchorElement>('a')?.focus();
+    menu?.querySelector<HTMLAnchorElement>('a')?.focus({preventScroll:true});
   },{signal});
   menu?.addEventListener('click',(event)=>{if((event.target as HTMLElement).closest('a'))closeMenu();},{signal});
   document.addEventListener('keydown',(event)=>{
